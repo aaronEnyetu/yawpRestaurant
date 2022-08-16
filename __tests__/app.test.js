@@ -49,6 +49,26 @@ describe('backend-express-template routes', () => {
     });
   });
 
- 
+  it('#GET /users should return a list of all users if admin', async () => {
+
+    const failure = await request(app).get('/api/v1/users/authUsers');
+    expect(failure.status).toBe(401);
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users').send({      
+      username: 'admin',
+      email: 'admin@example.com',
+      password: 'admin1'
+    });
+    const response = await agent.get('/api/v1/users/authUsers');
+    console.log(response.body);
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(3);
+    expect(response.body[0]).toEqual({
+      id: expect.any(String),
+      username: expect.any(String),
+      email: expect.any(String),
+    });
+  });
 
 });
