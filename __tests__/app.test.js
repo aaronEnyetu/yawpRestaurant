@@ -4,9 +4,9 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 const mockUser = {
-  username: 'mock2', 
+  username: 'mock5', 
   password: '123456',
-  email: 'test2@example.com'
+  email: 'test5@example.com'
 };
 
 
@@ -27,8 +27,8 @@ describe('backend-express-template routes', () => {
     expect(res.body).toEqual({
       user: {
         id: expect.any(String),
-        email: 'test2@example.com',
-        username: 'mock2'
+        email: 'test5@example.com',
+        username: 'mock5'
       },
       message: 'successfully signed in!',
    
@@ -54,11 +54,12 @@ describe('backend-express-template routes', () => {
     const failure = await request(app).get('/api/v1/users/authUsers');
     expect(failure.status).toBe(401);
     const agent = request.agent(app);
-    await agent.post('/api/v1/users').send({      
+    const user = await agent.post('/api/v1/users').send({      
       username: 'admin',
       email: 'admin@example.com',
       password: 'admin1'
     });
+    console.log(user.user);
     const response = await agent.get('/api/v1/users/authUsers');
     console.log(response.body);
 

@@ -2,6 +2,8 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 
 DROP TABLE IF EXISTS yawp_users CASCADE;
+DROP TABLE IF EXISTS yawp_restaurants CASCADE;
+DROP TABLE IF EXISTS yawp_reviews CASCADE;
 
 
 CREATE TABLE yawp_users (
