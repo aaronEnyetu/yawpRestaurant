@@ -38,7 +38,8 @@ INSERT INTO yawp_restaurants
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   rest_id BIGINT NOT NULL,
   user_id BIGINT NOT NULL,
-  review varchar(255) NOT NULL,
+  stars INT,
+  detail VARCHAR(255), 
   FOREIGN KEY (rest_id) REFERENCES yawp_restaurants(id),
   FOREIGN KEY (user_id) REFERENCES yawp_users(id)
 );
@@ -47,13 +48,14 @@ INSERT INTO yawp_reviews
 (
     rest_id, 
     user_id, 
-    review
+   stars,
+   detail
     )
 
 VALUES
-('1', '1', 'the best place in town'),
-('1', '1', 'amazing staff and tasty food'),
-('1', '2', 'the food was amazing'),
-('2', '2', 'You have to be here to believe it'),
-('2', '1', 'the chicken tikka was great'),
-('2', '2', 'I will definetly eat here again');
+('1', '1', 5, 'the best place in town'),
+('1', '1', 3, 'amazing staff and tasty food'),
+('1', '2', 4,  'the food was amazing'),
+('2', '2', 4,  'You have to be here to believe it'),
+('2', '1', 5, 'the chicken tikka was great'),
+('2', '2', 5,  'I will definetly eat here again');

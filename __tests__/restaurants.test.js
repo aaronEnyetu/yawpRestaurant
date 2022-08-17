@@ -25,4 +25,15 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('#GET /restaurants/:id/ should return a restaurant with reviews', async () => {
+    const response = await request(app).get('/api/v1/restaurants/1');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      id: '1',
+      name: 'Tasty',
+      reviews: expect.any(Array)
+    });
+  });
+
 });
