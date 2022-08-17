@@ -21,7 +21,7 @@ describe('backend-express-template routes', () => {
 
   it('#POST /user should create and sign in a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
-    console.log(res.body);
+    // console.log(res.body);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
@@ -54,14 +54,14 @@ describe('backend-express-template routes', () => {
     const failure = await request(app).get('/api/v1/users/authUsers');
     expect(failure.status).toBe(401);
     const agent = request.agent(app);
-    const user = await agent.post('/api/v1/users').send({      
+    await agent.post('/api/v1/users').send({      
       username: 'admin',
       email: 'admin@example.com',
       password: 'admin1'
     });
-    console.log(user.user);
+    // console.log(user.user);
     const response = await agent.get('/api/v1/users/authUsers');
-    console.log(response.body);
+    // console.log(response.body);
 
     expect(response.status).toBe(200);
     expect(response.body.length).toBe(3);
